@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Teachable Machine Image Model</title>
 
-
-
+  <!-- ✅ faviconの追加 -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
   <style>
     body {
@@ -32,24 +32,24 @@
   <header>
     <img src="images/icon.png" alt="icon" width="60" height="60" style="margin-right: 10px;">
     <h1>マスク判定</h1>
-
-<link rel="icon" type="image/png" href="images/favicon.png">
-
-
-    
   </header>
-</body>
-</html>
-  
-  <style>
-    body {
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #fdfbfb 0%, #ebedee 100%);
-      color: #333;
-      text-align: center;
-      padding: 30px;
-    }
 
+  <p id="instruction">カメラ選択⇒Start</p>
+
+  <div id="button-container">
+    <button id="frontBtn">インカメラ</button>
+    <button id="backBtn">アウトカメラ</button>
+    <button id="startBtn">Start</button>
+  </div>
+
+  <div id="webcam-container"></div>
+  <div id="label-container"></div>
+
+  <footer>
+    © <a href="https://sites.google.com/view/incict-design" target="_blank">Baron Fujimoto</a> #e-Resident of Estonia
+  </footer>
+
+  <style>
     h1 {
       font-size: 1.8em;
       margin-bottom: 10px;
@@ -108,23 +108,6 @@
       color: #666;
     }
   </style>
-</head>
-
-
-  <p id="instruction">カメラ選択⇒Start</p>
-
-  <div id="button-container">
-    <button id="frontBtn">インカメラ</button>
-    <button id="backBtn">アウトカメラ</button>
-    <button id="startBtn">Start</button>
-  </div>
-
-  <div id="webcam-container"></div>
-  <div id="label-container"></div>
-
-  <footer>
-    © <a href="https://sites.google.com/view/incict-design" target="_blank">Baron Fujimoto</a>   #e-Resident of Estonia
-  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -181,8 +164,7 @@
       `;
       document.getElementById("stopBtn").addEventListener("click", stopWebcam);
 
-　　　instruction.textContent = "Stop⇒カメラ停止";
-
+      instruction.textContent = "Stop⇒カメラ停止";
 
       // ラベルエリア初期化
       labelContainer = document.getElementById("label-container");
@@ -213,7 +195,6 @@
         let className = prediction[i].className.trim();
         const probability = (prediction[i].probability * 100).toFixed(1);
 
-        // 表示名置き換え
         if (className === "Class1" || className === "Class 1") className = "Bad";
         if (className === "Class2" || className === "Class 2") className = "Good";
 
@@ -223,7 +204,6 @@
 
         textDiv.innerHTML = `${className}: ${probability}%`;
 
-        // 丸の色変更
         if (className === "Bad" && probability > 50) {
           circleDiv.style.backgroundColor = "red";
           circleDiv.style.boxShadow = "0 0 10px red";
@@ -243,7 +223,6 @@
       }
       isRunning = false;
 
-      // 初期画面に戻す
       document.getElementById("webcam-container").innerHTML = "";
       document.getElementById("label-container").innerHTML = "";
       instruction.textContent = "カメラ選択⇒Start";
@@ -254,7 +233,6 @@
         <button id="startBtn">Start</button>
       `;
 
-      // イベントを再登録
       document.getElementById("frontBtn").addEventListener("click", () => {
         facingMode = "user";
         alert("インカメラに設定しました");
@@ -270,5 +248,6 @@
   </script>
 </body>
 </html>
+
 
 
