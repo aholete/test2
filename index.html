@@ -27,21 +27,11 @@
 </head>
 <body>
   <header>
-    <img src="image/icon.jpeg" alt="icon" width="60" height="60" style="margin-right: 10px;">
-    <h1>MachineLearning</h1>
+    <img src="images/icon.png" alt="icon" width="60" height="60" style="margin-right: 10px;">
+    <h1>マスク判定</h1>
   </header>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
   
   <style>
     body {
@@ -113,16 +103,7 @@
 </head>
 
 
-
-
-
-
-
-
-
-
-  
-  <p id="instruction">カメラを選んで「Start」を押してください。</p>
+  <p id="instruction">カメラ選択⇒Start</p>
 
   <div id="button-container">
     <button id="frontBtn">インカメラ</button>
@@ -141,7 +122,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
 
   <script type="text/javascript">
-    const URL = "https://teachablemachine.withgoogle.com/models/KRe9u0wDb/";
+    const URL = "https://teachablemachine.withgoogle.com/models/Li0UuEjTJ/";
     let model, webcam, labelContainer, maxPredictions;
     let facingMode = "user";
     let isRunning = false;
@@ -192,7 +173,8 @@
       `;
       document.getElementById("stopBtn").addEventListener("click", stopWebcam);
 
-      instruction.textContent = "カメラを停止するには「Stop」を押してください。";
+　　　instruction.textContent = "Stop⇒カメラ停止";
+
 
       // ラベルエリア初期化
       labelContainer = document.getElementById("label-container");
@@ -256,7 +238,7 @@
       // 初期画面に戻す
       document.getElementById("webcam-container").innerHTML = "";
       document.getElementById("label-container").innerHTML = "";
-      instruction.textContent = "カメラを選んで「Start」を押してください。";
+      instruction.textContent = "カメラ選択⇒Start";
 
       buttonContainer.innerHTML = `
         <button id="frontBtn">インカメラ</button>
@@ -280,21 +262,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
